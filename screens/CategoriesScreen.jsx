@@ -5,16 +5,21 @@ import { CATEGORIES } from '../data/dummy-data';
 
 import CategoryGridTile from '../components/CategoryGridTile';
 
-function renderGridItem(itemData) {
-    return (
-        <CategoryGridTile
-            title={itemData.item.title}
-            color={itemData.item.color}
-        />
-    );
-}
+export default function CategoriesScreen({ navigation }) {
+    function renderGridItem(itemData) {
+        function pressHandler() {
+            navigation.navigate('MealsOverview');
+        }
 
-export default function CategoriesScreen() {
+        return (
+            <CategoryGridTile
+                onPress={pressHandler}
+                title={itemData.item.title}
+                color={itemData.item.color}
+            />
+        );
+    }
+
     return (
         <FlatList
             data={CATEGORIES}
