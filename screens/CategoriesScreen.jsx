@@ -1,23 +1,26 @@
 import React from 'react';
-import { View, Text, ScrollView, useWindowDimensions } from 'react-native';
+import { FlatList } from 'react-native';
 
 import { CATEGORIES } from '../data/dummy-data';
+
 import CategoryGridTile from '../components/CategoryGridTile';
 
-export default function CategoriesScreen() {
-    const { width } = useWindowDimensions();
-
+function renderGridItem(itemData) {
     return (
-        <ScrollView style={{ flex: 1, marginTop: 20 }}>
-            <View style={{ flex: 1 }}>
-                {CATEGORIES.map((category) => (
-                    <CategoryGridTile
-                        key={category.id}
-                        title={category.title}
-                        color={category.color}
-                    />
-                ))}
-            </View>
-        </ScrollView>
+        <CategoryGridTile
+            title={itemData.item.title}
+            color={itemData.item.color}
+        />
+    );
+}
+
+export default function CategoriesScreen() {
+    return (
+        <FlatList
+            data={CATEGORIES}
+            keyExtractor={(item) => item.id}
+            renderItem={renderGridItem}
+            numColumns={2}
+        />
     );
 }

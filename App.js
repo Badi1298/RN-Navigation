@@ -7,18 +7,11 @@ import CategoriesScreen from './screens/CategoriesScreen';
 
 export default function App() {
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <CategoriesScreen />
-                <StatusBar style="auto" />
-            </View>
+        <SafeAreaView>
+            <CategoriesScreen />
+            <StatusBar style="light" />
         </SafeAreaView>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-});
+const styles = StyleSheet.create({});
