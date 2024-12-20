@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 
 import { MEALS } from '../data/dummy-data';
+
 import MealItem from '../components/MealItem';
 
 export default function MealsOverviewScreen({ route }) {
