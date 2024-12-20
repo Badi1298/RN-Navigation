@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StatusBar } from 'expo-status-bar';
 
+import AboutMealScreen from './screens/AboutMealScreen';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 
@@ -22,6 +23,10 @@ function RootStack() {
 				name="MealsOverview"
 				options={({ route }) => ({ title: route.params.title })}
 				component={MealsOverviewScreen}
+			/>
+			<Stack.Screen
+				name="AboutMeal"
+				component={AboutMealScreen}
 			/>
 		</Stack.Navigator>
 	);

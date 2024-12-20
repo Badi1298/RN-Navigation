@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
 
-export default function MealItem({ meal }) {
+export default function MealItem({ meal, onPress }) {
 	return (
 		<Pressable
 			android_ripple={{ color: '#ccc' }}
 			style={({ pressed }) => [{ opacity: pressed && Platform.OS === 'ios' ? 0.7 : 1 }, styles.rootContainer]}
+			onPress={() => onPress(meal.id)}
 		>
 			<Image
 				source={{ uri: meal.imageUrl }}
