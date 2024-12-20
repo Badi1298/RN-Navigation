@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
 
 export default function MealItem({ meal }) {
 	return (
-		<Pressable style={styles.rootContainer}>
-			<View style={{ height: 200 }}>
-				<Image
-					source={{ uri: meal.imageUrl }}
-					style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-				/>
-			</View>
+		<Pressable
+			android_ripple={{ color: '#ccc' }}
+			style={({ pressed }) => [{ opacity: pressed && Platform.OS === 'ios' ? 0.7 : 1 }, styles.rootContainer]}
+		>
+			<Image
+				source={{ uri: meal.imageUrl }}
+				style={styles.image}
+			/>
 			<View style={styles.textContainer}>
 				<Text style={styles.title}>{meal.title}</Text>
 				<View style={styles.mealDetailsContainer}>
@@ -32,7 +33,13 @@ const styles = StyleSheet.create({
 		shadowOffset: { width: 0, height: 2 },
 		shadowRadius: 8,
 		shadowOpacity: 0.26,
-		overflow: 'hidden',
+		overflow: Platform.OS === 'android' && Platform.Version >= 21 ? 'hidden' : 'visible',
+	},
+
+	image: {
+		width: '100%',
+		height: 200,
+		objectFit: 'cover',
 	},
 
 	textContainer: {
