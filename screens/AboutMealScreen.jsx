@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
 import { MEALS } from '../data/dummy-data';
+
+import MealDetails from '../components/MealDetails';
 import AboutMealSection from '../components/AboutMealSection';
 
 export default function AboutMealScreen({ route }) {
@@ -17,12 +19,12 @@ export default function AboutMealScreen({ route }) {
 					style={styles.image}
 				/>
 				<Text style={styles.title}>{selectedMeal.title}</Text>
-				<View style={styles.detailsContainer}>
-					<Text style={styles.topDetailsText}>{selectedMeal.duration}m</Text>
-					<Text style={styles.topDetailsText}>{selectedMeal.complexity.toUpperCase()}</Text>
-					<Text style={styles.topDetailsText}>{selectedMeal.affordability.toUpperCase()}</Text>
-				</View>
-
+				<MealDetails
+					textStyle={{ color: 'white' }}
+					duration={selectedMeal.duration}
+					complexity={selectedMeal.complexity}
+					affordability={selectedMeal.affordability}
+				/>
 				<AboutMealSection
 					title="Ingredients"
 					list={selectedMeal.ingredients}
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		color: 'white',
 		marginTop: 12,
+		textAlign: 'center',
 	},
 
 	detailsContainer: {

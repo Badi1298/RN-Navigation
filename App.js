@@ -26,6 +26,7 @@ function RootStack() {
 			/>
 			<Stack.Screen
 				name="AboutMeal"
+				options={({ route }) => ({ title: route.params.title })}
 				component={AboutMealScreen}
 			/>
 		</Stack.Navigator>

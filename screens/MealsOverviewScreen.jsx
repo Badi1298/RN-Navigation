@@ -11,7 +11,7 @@ export default function MealsOverviewScreen({ route, navigation }) {
 	const displayedMeals = MEALS.filter((meal) => meal.categoryIds.indexOf(categoryId) >= 0);
 
 	function pressHandler(mealId) {
-		navigation.navigate('AboutMeal', { mealId });
+		navigation.navigate('AboutMeal', { mealId, title: MEALS.find((meal) => meal.id === mealId).title });
 	}
 
 	function renderMealItem(itemData) {

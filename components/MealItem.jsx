@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
 
+import MealDetails from './MealDetails';
+
 export default function MealItem({ meal, onPress }) {
 	return (
 		<Pressable
@@ -14,11 +16,11 @@ export default function MealItem({ meal, onPress }) {
 			/>
 			<View style={styles.textContainer}>
 				<Text style={styles.title}>{meal.title}</Text>
-				<View style={styles.mealDetailsContainer}>
-					<Text style={styles.mealDetailsText}>{meal.duration}m</Text>
-					<Text style={styles.mealDetailsText}>{meal.complexity.toUpperCase()}</Text>
-					<Text style={styles.mealDetailsText}>{meal.affordability.toUpperCase()}</Text>
-				</View>
+				<MealDetails
+					duration={meal.duration}
+					complexity={meal.complexity}
+					affordability={meal.affordability}
+				/>
 			</View>
 		</Pressable>
 	);
