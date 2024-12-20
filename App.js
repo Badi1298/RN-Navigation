@@ -1,3 +1,4 @@
+import { Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -26,7 +27,6 @@ function RootStack() {
 			/>
 			<Stack.Screen
 				name="AboutMeal"
-				options={({ route }) => ({ title: route.params.title })}
 				component={AboutMealScreen}
 			/>
 		</Stack.Navigator>

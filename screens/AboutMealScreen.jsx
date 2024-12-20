@@ -1,15 +1,33 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import React, { useLayoutEffect } from 'react';
+import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native';
 
 import { MEALS } from '../data/dummy-data';
 
 import MealDetails from '../components/MealDetails';
 import AboutMealSection from '../components/AboutMealSection';
+import IconButton from '../components/IconButton';
 
-export default function AboutMealScreen({ route }) {
+export default function AboutMealScreen({ route, navigation }) {
 	const { mealId } = route.params;
 
 	const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+	function headerRightButtonHandler() {
+		console.log('Fav button pressed');
+	}
+
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			title: selectedMeal.title,
+			headerRight: () => (
+				<IconButton
+					icon="star"
+					color="white"
+					onPress={headerRightButtonHandler}
+				/>
+			),
+		});
+	}, [navigation, headerRightButtonHandler]);
 
 	return (
 		<ScrollView>
