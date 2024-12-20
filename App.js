@@ -10,24 +10,30 @@ import MealsOverviewScreen from './screens/MealsOverviewScreen';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-    return (
-        <>
-            <StatusBar style="dark" />
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen
-                        name="Categories"
-                        component={CategoriesScreen}
-                    />
-                    <Stack.Screen
-                        name="MealsOverview"
-                        options={{ title: 'Meals Overview' }}
-                        component={MealsOverviewScreen}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </>
-    );
+	return (
+		<>
+			<StatusBar style="light" />
+			<NavigationContainer>
+				<Stack.Navigator
+					screenOptions={{ headerStyle: { backgroundColor: '#351401' }, headerTintColor: 'white', contentStyle: { backgroundColor: '#3f2f25' } }}
+				>
+					<Stack.Screen
+						name="Categories"
+						options={{ title: 'Meals Categories' }}
+						component={CategoriesScreen}
+					/>
+					<Stack.Screen
+						name="MealsOverview"
+						options={({ route, navigation }) => {
+							const { title } = route.params;
+							return { title };
+						}}
+						component={MealsOverviewScreen}
+					/>
+				</Stack.Navigator>
+			</NavigationContainer>
+		</>
+	);
 }
 
 const styles = StyleSheet.create({});
