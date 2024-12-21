@@ -2,8 +2,7 @@ import { createContext, useState } from 'react';
 
 export const FavouritesContext = createContext({
 	ids: [],
-	addFavourite: (id) => {},
-	removeFavourite: (id) => {},
+	toggleFavourite: (id) => {},
 });
 
 export default function FavouritesContextProvider({ children }) {
@@ -17,12 +16,19 @@ export default function FavouritesContextProvider({ children }) {
 		setFavouriteMealIds((current) => current.filter((mealId) => mealId !== id));
 	};
 
+	const toggleFavourite = (id) => {
+		if (favouriteMealIds.includes(id)) {
+			removeFavourite(id);
+		} else {
+			addFavourite(id);
+		}
+	};
+
 	return (
 		<FavouritesContext.Provider
 			value={{
 				ids: favouriteMealIds,
-				addFavourite,
-				removeFavourite,
+				toggleFavourite,
 			}}
 		>
 			{children}

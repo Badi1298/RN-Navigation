@@ -1,19 +1,25 @@
-import React, { useLayoutEffect } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native';
+import React, { useContext, useLayoutEffect } from 'react';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+
+import { FavouritesContext } from '../store/context/favorites-context';
 
 import { MEALS } from '../data/dummy-data';
 
+import IconButton from '../components/IconButton';
 import MealDetails from '../components/MealDetails';
 import AboutMealSection from '../components/AboutMealSection';
-import IconButton from '../components/IconButton';
 
 export default function AboutMealScreen({ route, navigation }) {
+	const { ids, toggleFavourite } = useContext(FavouritesContext);
+
 	const { mealId } = route.params;
 
 	const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
+	const starColor = ids.includes(selectedMeal.id) ? 'yellow' : 'white';
+
 	function headerRightButtonHandler() {
-		console.log('Fav button pressed');
+		toggleFavourite(selectedMeal.id);
 	}
 
 	useLayoutEffect(() => {
@@ -22,7 +28,7 @@ export default function AboutMealScreen({ route, navigation }) {
 			headerRight: () => (
 				<IconButton
 					icon="star"
-					color="white"
+					color={starColor}
 					onPress={headerRightButtonHandler}
 				/>
 			),
