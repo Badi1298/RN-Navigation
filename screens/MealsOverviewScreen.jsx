@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { MEALS } from '../data/dummy-data';
 
-import MealItem from '../components/MealItem';
+import MealsList from '../components/MealsList';
 
 export default function MealsOverviewScreen({ route, navigation }) {
 	const { categoryId } = route.params;
@@ -14,23 +14,11 @@ export default function MealsOverviewScreen({ route, navigation }) {
 		navigation.navigate('AboutMeal', { mealId, title: MEALS.find((meal) => meal.id === mealId).title });
 	}
 
-	function renderMealItem(itemData) {
-		return (
-			<MealItem
-				onPress={pressHandler}
-				meal={itemData.item}
-			/>
-		);
-	}
-
 	return (
-		<View style={styles.container}>
-			<FlatList
-				data={displayedMeals}
-				keyExtractor={(item) => item.id}
-				renderItem={renderMealItem}
-			/>
-		</View>
+		<MealsList
+			onMealPress={pressHandler}
+			displayedMeals={displayedMeals}
+		/>
 	);
 }
 
