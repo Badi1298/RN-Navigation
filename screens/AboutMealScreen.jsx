@@ -1,7 +1,9 @@
 import React, { useContext, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
-import { FavouritesContext } from '../store/context/favorites-context';
+// import { FavouritesContext } from '../store/context/favorites-context';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFavourite } from '../store/redux/favourites';
 
 import { MEALS } from '../data/dummy-data';
 
@@ -10,7 +12,10 @@ import MealDetails from '../components/MealDetails';
 import AboutMealSection from '../components/AboutMealSection';
 
 export default function AboutMealScreen({ route, navigation }) {
-	const { ids, toggleFavourite } = useContext(FavouritesContext);
+	// const { ids, toggleFavourite } = useContext(FavouritesContext);
+	const { favourites: ids } = useSelector((state) => state.favourites);
+
+	const dispatch = useDispatch();
 
 	const { mealId } = route.params;
 
@@ -19,7 +24,8 @@ export default function AboutMealScreen({ route, navigation }) {
 	const starColor = ids.includes(selectedMeal.id) ? 'yellow' : 'white';
 
 	function headerRightButtonHandler() {
-		toggleFavourite(selectedMeal.id);
+		// toggleFavourite(selectedMeal.id);
+		dispatch(toggleFavourite(selectedMeal.id));
 	}
 
 	useLayoutEffect(() => {
